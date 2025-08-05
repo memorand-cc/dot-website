@@ -5,7 +5,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet">
 		<title>Simple YIFY</title>
-		<meta name="description" content="A simple and lightweight GUI to the YIFY API">
+		<meta name="description" content="A simple and lightweight frontend to the YIFY API to avoid de adware of the original site">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<link rel="shortcut icon" href="favicon.ico">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -97,6 +97,12 @@
 			}
 			li, p, footer {
 				line-height: 1.6;
+			}
+			footer > p.disclaimer {
+				color: #999;
+				background-color: #1d1d1d;
+				padding: 1rem;
+				border-radius: 4px;
 			}
 			h2 {
 				white-space: nowrap;
@@ -322,7 +328,7 @@
 
 // RENDER THE HTML CONTENT
 					document.getElementById("list").innerHTML = content_list;
-					document.getElementById("foot").innerHTML = content_foot;
+					document.getElementById("foot").innerHTML = content_foot + "<p class='disclaimer'>This website doen not host any content. It's just a simple and lightweight frontend to the YIFY Movies API to avoid the adware of the original site.</p>";
 				})
 
 // MANAGE FETCH ERRORS
@@ -333,5 +339,8 @@
 
 				})
 		</script>
+		<!-- 100% privacy-first analytics -->
+		<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+		<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 	</body>
 </html>
