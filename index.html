@@ -127,14 +127,16 @@
 			.error {
 				background-color: #c44;
 			}
-			#foot p.disclaimer {
-				color: #999;
+			#foot > p.disclaimer {
 				background-color: #1d1d1d;
 				padding: 1rem;
 				border-radius: 4px;
 				margin-top: 6rem;
 				margin-bottom: 1rem;
-			}			
+			}
+			#foot > p.disclaimer, #foot > p.disclaimer > a {
+				color: #999;
+			}
 			
 			@media screen and (min-width: 480px) {
 				header {
