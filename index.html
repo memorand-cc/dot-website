@@ -98,12 +98,6 @@
 			li, p, footer {
 				line-height: 1.6;
 			}
-			footer > p.disclaimer {
-				color: #999;
-				background-color: #1d1d1d;
-				padding: 1rem;
-				border-radius: 4px;
-			}
 			h2 {
 				white-space: nowrap;
 				overflow: hidden;
@@ -133,6 +127,14 @@
 			.error {
 				background-color: #c44;
 			}
+			#foot p.disclaimer {
+				color: #999;
+				background-color: #1d1d1d;
+				padding: 1rem;
+				border-radius: 4px;
+				margin-top: 6rem;
+				margin-bottom: 1rem;
+			}			
 			
 			@media screen and (min-width: 480px) {
 				header {
@@ -321,9 +323,9 @@
 						var content_list = "<p>No Results</p>";
 
 						if (urlParams.has('movie'))
-							content_foot = "<p>No results for &ldquo;" + urlParams.get('movie') + "&rdquo; at <a target='_blank' href='https://yts.mx/browse-movies'>YIFY Movies";
+							content_foot = "<p>No results for &ldquo;" + urlParams.get('movie') + "&rdquo; at <a target='_blank' href='https://yts.mx/browse-movies'>YIFY Movies</p>";
 						else
-							content_foot = "<p>No more movies released by <a target='_blank' href='https://yts.mx/browse-movies'>YIFY Movies";
+							content_foot = "<p>No more movies released by <a target='_blank' href='https://yts.mx/browse-movies'>YIFY Movies</p>";
 					}
 
 // RENDER THE HTML CONTENT
