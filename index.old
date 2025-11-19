@@ -232,13 +232,13 @@
 			const urlParams = new URLSearchParams(queryString);
 
 			if (urlParams.has('movie') && urlParams.has('page'))
-				var url = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added&page=" + urlParams.get('page') + "&query_term=" + urlParams.get('movie');
+				var url = "https://yts.mx/api/v2/list_movies.json?limit=50&sort_by=date_added&page=" + urlParams.get('page') + "&query_term=" + urlParams.get('movie');
 			else if (urlParams.has('movie'))
-				var url = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added&query_term=" + urlParams.get('movie');
+				var url = "https://yts.mx/api/v2/list_movies.json?limit=50&sort_by=date_added&query_term=" + urlParams.get('movie');
 			else if (urlParams.has('page'))
-				var url = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added&page=" + urlParams.get('page');
+				var url = "https://yts.mx/api/v2/list_movies.json?limit=50&sort_by=date_added&page=" + urlParams.get('page');
 			else
-				var url = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added";
+				var url = "https://yts.mx/api/v2/list_movies.json?limit=50&sort_by=date_added";
 
 // FETCH THE JSON FROM THE URL
 			fetch(url)
@@ -288,10 +288,10 @@
 
 // BUILD THE FOOTER FOR SEARCH
 						if (urlParams.has('movie'))
-							content_foot += json.data.movie_count + " Result(s) for &ldquo;" + urlParams.get('movie') + "&rdquo; at <a target='_blank' href='https://yts.lt/browse-movies'>YIFY Movies</a><br />Result(s) " + parseInt((json.data.limit*json.data.page_number)-(json.data.limit-1)) + " to " + parseInt((json.data.limit*(json.data.page_number-1))+json.data.movies.length);
+							content_foot += json.data.movie_count + " Result(s) for &ldquo;" + urlParams.get('movie') + "&rdquo; at <a target='_blank' href='https://yts.mx/browse-movies'>YIFY Movies</a><br />Result(s) " + parseInt((json.data.limit*json.data.page_number)-(json.data.limit-1)) + " to " + parseInt((json.data.limit*(json.data.page_number-1))+json.data.movies.length);
 // BUILD THE FOOTER FOR LISTING
 						else
-							content_foot += "Movies " + parseInt((json.data.limit*json.data.page_number)-(json.data.limit-1)) + " to " + parseInt((json.data.limit*(json.data.page_number-1))+json.data.movies.length) + " released by <a target='_blank' href='https://yts.lt/browse-movies'>YIFY Movies</a>";
+							content_foot += "Movies " + parseInt((json.data.limit*json.data.page_number)-(json.data.limit-1)) + " to " + parseInt((json.data.limit*(json.data.page_number-1))+json.data.movies.length) + " released by <a target='_blank' href='https://yts.mx/browse-movies'>YIFY Movies</a>";
 
 						content_foot += "</p>";
 
@@ -325,14 +325,14 @@
 						var content_list = "<p>No Results</p>";
 
 						if (urlParams.has('movie'))
-							content_foot = "<p>No results for &ldquo;" + urlParams.get('movie') + "&rdquo; at <a target='_blank' href='https://yts.lt/browse-movies'>YIFY Movies</p>";
+							content_foot = "<p>No results for &ldquo;" + urlParams.get('movie') + "&rdquo; at <a target='_blank' href='https://yts.mx/browse-movies'>YIFY Movies</p>";
 						else
-							content_foot = "<p>No more movies released by <a target='_blank' href='https://yts.lt/browse-movies'>YIFY Movies</p>";
+							content_foot = "<p>No more movies released by <a target='_blank' href='https://yts.mx/browse-movies'>YIFY Movies</p>";
 					}
 
 // RENDER THE HTML CONTENT
 					document.getElementById("list").innerHTML = content_list;
-					document.getElementById("foot").innerHTML = content_foot + "<p class='disclaimer'>This website does not host any content. It is just a simple and lightweight frontend to the YIFY Movies <a target='_blank' href='https://yts.lt/api'>API</a> to avoid the adware of the <a target='_blank' href='https://yts.lt'>original site</a>.</p>";
+					document.getElementById("foot").innerHTML = content_foot + "<p class='disclaimer'>This website does not host any content. It is just a simple and lightweight frontend to the YIFY Movies <a target='_blank' href='https://yts.mx/api'>API</a> to avoid the adware of the <a target='_blank' href='https://yts.mx'>original site</a>.</p>";
 				})
 
 // MANAGE FETCH ERRORS
