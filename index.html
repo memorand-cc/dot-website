@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="description" content="A simple and lightweight frontend to the YIFY API with infinite scroll">
+    <meta name="description" content="A simple and lightweight frontend to the YIFY API">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
     <style type="text/css" media="screen">
@@ -79,7 +79,7 @@
 
     <footer id="foot">
         <p id="status-text"></p>
-        <p class="disclaimer">This website does not host any content. It is just a simple frontend to the YIFY Movies <a target='_blank' href='https://yts.lt/api'>API</a>.</p>
+        <p class="disclaimer">This website does not host any content. It is just a simple and lightweight frontend to the <a target='_blank' href='https://yts.lt/api'>YIFY Movies API</a>.</p>
     </footer>
 
     <script type="text/javascript">
@@ -163,14 +163,14 @@
                 const lang = movie.language ? `&nbsp;&middot;&nbsp;<span class='up'>${movie.language}</span>` : '';
                 const runtime = movie.runtime ? `&nbsp;&middot;&nbsp;${movie.runtime}&nbsp;min` : '';
                 const imdbLink = `https://www.imdb.com/title/${movie.imdb_code}`;
-                const rating = movie.rating ? `&nbsp;${movie.rating}` : '';
+                const rating = movie.rating ? `:&nbsp;${movie.rating}` : '';
                 
                 // Torrent links construction
                 let torrentsHtml = "";
                 if (movie.torrents) {
                     movie.torrents.forEach(t => {
                         torrentsHtml += `<li>
-                            <span class='up'>${t.type}</span>&nbsp;${t.quality}&nbsp;${t.video_codec || ''}&nbsp;
+                            <span class='up'>${t.type}</span>&nbsp;${t.quality}&nbsp;${t.video_codec || ''}&nbsp;${t.audio_channels || ''}
                             &middot;&nbsp;<a title='Download' href='${t.url}'>${t.size}</a>
                         </li>`;
                     });
@@ -186,8 +186,8 @@
                                 ${year}${lang}${runtime}
                             </li>
                             <li>
-                                <a target='_blank' href='${imdbLink}'>IMDb</a>:${rating}
-                                ${movie.yt_trailer_code ? `&nbsp;&middot;&nbsp;<a target='_blank' href='https://www.youtube.com/embed/${movie.yt_trailer_code}'>Trailer</a>` : ''}
+                                <a target='_blank' href='${imdbLink}'>IMDb</a>${rating}
+                                ${movie.yt_trailer_code ? `&middot;&nbsp;<a target='_blank' href='https://www.youtube.com/embed/${movie.yt_trailer_code}'>Trailer</a>` : ''}
                             </li>
                             ${torrentsHtml}
                         </ul>
