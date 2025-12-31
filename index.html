@@ -1,351 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Simple YIFY</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet">
-		<meta http-equiv="content-type" content="text/html; charset=utf-8">		
-		<meta name="description" content="A simple and lightweight frontend to the YIFY API to avoid de adware of the original site">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link rel="shortcut icon" href="favicon.ico">
-		<link rel="alternate" type="application/rss+xml" title="Yify Movies" href="https://yts.lt/rss">
-		<style type="text/css" media="screen">
-			* {
-				margin: 0;
-				padding: 0;
-				border: 0;
-				box-sizing: border-box;
-				font-family: "IBM Plex Sans", sans-serif;
-				color: #e0e0e0;
-			}
-			html, body {
-				width: 100%;
-				height: 100%;
-			}
-			body {
-				background-color: #171717;
-			}
-			header, h2, p, footer {
-				text-align: center;
-			}
-			header {
-				padding: 2.5rem 1rem 3rem 1rem;
-			}
-			header > a > img {
-				width: 128px;
-			}
-			input, button, h2 {
-				font-size: 1.16rem;
-				font-weight: normal;
-			}
-			h2 a, a.arrow {
-				text-decoration: none;
-			}
-			h2 a:hover {
-				text-decoration: underline;
-			}
-			input, button, a.arrow {
-				border-radius: 4px;
-			}
-			input, button, .error {
-				padding: 0.25rem 0.5rem;
-			}
-			a.arrow {
-				font-size: 1.25rem;
-				padding: 0.5rem 1rem;
-			}
-			button:hover, a.arrow:hover {
-				color: #282828;
-				background-color: #f90;
-			}
-			input, button, h2, ul, a.arrow {
-				background-color: #282828;
-			}
-			input, button {
-				height: 36px;
-			}			
-			input {
-				margin-top: 2rem;
-				width: 100%;
-			}
-			button {
-				margin-top: 1rem;
-				width: 160px;
-				cursor: pointer;
-			}
-			#list {
-				display: flex;
-				flex-wrap: wrap;
-				padding: 1.5rem 0;
-				background-color: #1d1d1d;
-				border-top: 1px dashed #333;
-				border-bottom: 1px dashed #333;
-			}
-			section, p {
-				width: 100%;
-			}
-			section {
-				padding: 1rem;
-			}
-			ul {
-				list-style: none;
-				text-align: left;
-				vertical-align: top;
-				margin-bottom: 0.5rem;
-				padding: 0.75rem 1rem;
-				border-radius: 0 0 4px 4px;
-			}
-			li, p, footer {
-				line-height: 1.6;
-			}
-			h2 {
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				margin-top: 0.5rem;
-				padding: 0.5rem 1rem 0.66rem 1rem;
-				border-radius: 4px 4px 0 0;
-			}
-			section img {
-				width: 100%;
-				display: block;
-				aspect-ratio: 2/3;
-				background-color: #171717;
-			}
-			#list p {
-				margin: 1.5rem;
-			}
-			#foot p {
-				margin: 2rem 0;
-			}
-			#foot {
-				padding: 0.5rem 1rem 1rem 1rem;
-			}
-			.up {
-				text-transform: uppercase;
-			}
-			.error {
-				background-color: #c44;
-			}
-			#foot > p.disclaimer {
-				background-color: #1d1d1d;
-				padding: 1rem;
-				border-radius: 4px;
-				margin-top: 6rem;
-				margin-bottom: 1rem;
-			}
-			#foot > p.disclaimer, #foot > p.disclaimer > a {
-				color: #999;
-			}
-			
-			@media screen and (min-width: 480px) {
-				header {
-					padding: 2.5rem 1.5rem 3rem 1.5rem;
-				}
-				input {
-					max-width: 385px;
-				}
-				#list {
-					padding: 1.5rem;
-				}
-				section {
-					padding: 1rem 1.5rem;
-				}
-				#foot {
-					padding: 0.5rem 1.5rem 1rem 1.5rem;
-				}
-			}
-			@media screen and (min-width: 750px) {
-				section {
-					width: 50%;
-				}
-			}
-			@media screen and (min-width: 1125px) {
-				section {
-					width: 33%;
-				}
-			}
-			@media screen and (min-width: 1500px) {
-				section {
-					width: 25%;
-				}
-			}
-			@media screen and (min-width: 1875px) {
-				section {
-					width: 20%;
-				}
-			}
-			@media screen and (min-width: 2250px) {
-				section {
-					width: 16.66%;
-				}
-			}
-			@media screen and (min-width: 2625px) {
-				section {
-					width: 14.285%;
-				}
-			}
-			@media screen and (min-width: 3000px) {
-				section {
-					width: 12.5%;
-				}
-			}
-			@media screen and (min-width: 3375px) {
-				section {
-					width: 11.111%;
-				}
-			}
-			@media screen and (min-width: 3750px) {
-				section {
-					width: 10%;
-				}
-			}
-			@media screen and (min-width: 4125px) {
-				section {
-					width: 9.09%;
-				}
-			}
-			@media screen and (min-width: 4500px) {
-				section {
-					width: 8.333%;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<header>
-			<a href="/"><img src="logo-YTS.svg"></a>
-			<form>
-				<input type="text" name="movie" size="48" /><br />
-				<button type="submit">Search</button>
-			</form>
-		</header>
+<head>
+    <title>Simple YIFY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="description" content="A simple and lightweight frontend to the YIFY API with infinite scroll">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style type="text/css" media="screen">
+        * { margin: 0; padding: 0; border: 0; box-sizing: border-box; font-family: "IBM Plex Sans", sans-serif; color: #e0e0e0; }
+        html, body { width: 100%; height: 100%; }
+        body { background-color: #171717; }
+        header, h2, p, footer { text-align: center; }
+        header { padding: 2.5rem 1rem 3rem 1rem; }
+        header > a > img { width: 128px; }
+        input, button, h2 { font-size: 1.16rem; font-weight: normal; }
+        h2 a, a.arrow { text-decoration: none; }
+        h2 a:hover { text-decoration: underline; }
+        input, button, a.arrow { border-radius: 4px; }
+        input, button, .error { padding: 0.25rem 0.5rem; }
+        button:hover { color: #282828; background-color: #f90; }
+        input, button, h2, ul, a.arrow { background-color: #282828; }
+        input, button { height: 36px; }
+        input { margin-top: 2rem; width: 100%; }
+        button { margin-top: 1rem; width: 160px; cursor: pointer; }
+        
+        /* List Container */
+        #list { display: flex; flex-wrap: wrap; padding: 1.5rem 0; background-color: #1d1d1d; border-top: 1px dashed #333; border-bottom: 1px dashed #333; min-height: 50vh; }
+        
+        /* Cards */
+        section, p { width: 100%; }
+        section { padding: 1rem; opacity: 0; animation: fadeIn 0.5s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        ul { list-style: none; text-align: left; vertical-align: top; margin-bottom: 0.5rem; padding: 0.75rem 1rem; border-radius: 0 0 4px 4px; }
+        li, p, footer { line-height: 1.6; }
+        h2 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 0.5rem; padding: 0.5rem 1rem 0.66rem 1rem; border-radius: 4px 4px 0 0; }
+        section img { width: 100%; display: block; aspect-ratio: 2/3; background-color: #171717; object-fit: cover; }
+        
+        /* Footer & Utils */
+        #foot p { margin: 2rem 0; }
+        #foot { padding: 0.5rem 1rem 1rem 1rem; }
+        .up { text-transform: uppercase; }
+        .error { background-color: #c44; display: inline-block; margin-top: 20px;}
+        .disclaimer { background-color: #1d1d1d; padding: 1rem; border-radius: 4px; margin-top: 2rem; margin-bottom: 1rem; color: #999; }
+        .disclaimer a { color: #999; }
 
-		<div id="list"></div>
+        /* Loading Indicator */
+        #loader { text-align: center; padding: 20px; display: none; width: 100%; }
+        .spinner { border: 4px solid #333; border-top: 4px solid #f90; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-		<footer id="foot"></footer>
+        /* Responsive Grid */
+        @media screen and (min-width: 480px) { header { padding: 2.5rem 1.5rem 3rem 1.5rem; } input { max-width: 385px; } #list { padding: 1.5rem; } section { padding: 1rem 1.5rem; } #foot { padding: 0.5rem 1.5rem 1rem 1.5rem; } }
+        @media screen and (min-width: 750px) { section { width: 50%; } }
+        @media screen and (min-width: 1125px) { section { width: 33%; } }
+        @media screen and (min-width: 1500px) { section { width: 25%; } }
+        @media screen and (min-width: 1875px) { section { width: 20%; } }
+        @media screen and (min-width: 2250px) { section { width: 16.66%; } }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/"><img src="https://yify.website/logo-YTS.svg" alt="YTS Logo"></a>
+        <form>
+            <!-- Clean URL on submit -->
+            <input type="text" name="movie" size="48" placeholder="" />
+            <br />
+            <button type="submit">Search</button>
+        </form>
+    </header>
 
-		<script type="text/javascript">
+    <div id="list"></div>
+    
+    <div id="loader"><div class="spinner"></div></div>
 
-// BUILD THE URL FOR SEARCH, PAGINATION, AND LISTING
-			const queryString = window.location.search;
-			const urlParams = new URLSearchParams(queryString);
+    <footer id="foot">
+        <p id="status-text"></p>
+        <p class="disclaimer">This website does not host any content. It is just a simple frontend to the YIFY Movies <a target='_blank' href='https://yts.lt/api'>API</a>.</p>
+    </footer>
 
-			if (urlParams.has('movie') && urlParams.has('page'))
-				var url = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added&page=" + urlParams.get('page') + "&query_term=" + urlParams.get('movie');
-			else if (urlParams.has('movie'))
-				var url = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added&query_term=" + urlParams.get('movie');
-			else if (urlParams.has('page'))
-				var url = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added&page=" + urlParams.get('page');
-			else
-				var url = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added";
+    <script type="text/javascript">
+        // --- STATE MANAGEMENT ---
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentPage = parseInt(urlParams.get('page')) || 1;
+        let isLoading = false;
+        let hasMore = true;
+        const searchTerm = urlParams.get('movie') || '';
+        
+        // --- CONFIGURATION ---
+        // Construct the Base URL without the page parameter
+        let baseUrl = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added";
+        if (searchTerm) {
+            baseUrl += "&query_term=" + encodeURIComponent(searchTerm);
+            // Set input value to current search
+            document.querySelector('input[name="movie"]').value = searchTerm;
+        }
 
-// FETCH THE JSON FROM THE URL
-			fetch(url)
-				.then(response => response.json())
-				.then(json => {
+        // --- CORE FUNCTIONS ---
 
-					if (json.data.movies) {
+        function fetchMovies() {
+            if (isLoading || !hasMore) return;
+            
+            isLoading = true;
+            document.getElementById('loader').style.display = 'block';
 
-						var content_list = "";
+            const fetchUrl = `${baseUrl}&page=${currentPage}`;
 
-						for (let i = 0; i < json.data.movies.length; i++) {
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(json => {
+                    // Check if data exists
+                    if (json.data && json.data.movies && json.data.movies.length > 0) {
+                        renderMovies(json.data.movies);
+                        
+                        // Update UI Footer Stats
+                        const loadedCount = (currentPage - 1) * json.data.limit + json.data.movies.length;
+                        document.getElementById("status-text").innerHTML = 
+                            `Showing ${loadedCount} of ${json.data.movie_count} results. Scroll for more.`;
 
-							content_list += "<section>";
+                        // Prepare for next page
+                        currentPage++;
+                        
+                        // Check if we reached the end
+                        if (loadedCount >= json.data.movie_count) {
+                            hasMore = false;
+                            document.getElementById("status-text").innerHTML = "End of results.";
+                        }
+                    } else {
+                        // No results found at all or end of list
+                        hasMore = false;
+                        if(currentPage === 1) {
+                             document.getElementById("list").innerHTML = "<p>No Results Found.</p>";
+                        } else {
+                             document.getElementById("status-text").innerHTML = "No more movies to load.";
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    const errorMsg = "<p class='error'>Error fetching data. Please check your connection.</p>";
+                    if(currentPage === 1) document.getElementById("list").innerHTML = errorMsg;
+                    else document.getElementById("foot").insertAdjacentHTML('afterbegin', errorMsg);
+                    hasMore = false; // Stop trying on error
+                })
+                .finally(() => {
+                    isLoading = false;
+                    document.getElementById('loader').style.display = 'none';
+                });
+        }
 
-							content_list += "<h2><a title='Permalink' href='?movie=" + json.data.movies[i].imdb_code + "'>" + json.data.movies[i].title_english + "</a></h2>";
+        function renderMovies(movies) {
+            let htmlBuffer = "";
+            
+            movies.forEach(movie => {
+                // Safety checks for missing data
+                const title = movie.title_english || movie.title;
+                const img = movie.large_cover_image || movie.medium_cover_image;
+                const year = movie.year || '';
+                const lang = movie.language ? `&nbsp;&middot;&nbsp;<span class='up'>${movie.language}</span>` : '';
+                const runtime = movie.runtime ? `&nbsp;&middot;&nbsp;${movie.runtime}&nbsp;min` : '';
+                const imdbLink = `https://www.imdb.com/title/${movie.imdb_code}`;
+                const rating = movie.rating ? `&nbsp;${movie.rating}` : '';
+                
+                // Torrent links construction
+                let torrentsHtml = "";
+                if (movie.torrents) {
+                    movie.torrents.forEach(t => {
+                        torrentsHtml += `<li>
+                            <span class='up'>${t.type}</span>&nbsp;${t.quality}&nbsp;${t.video_codec || ''}&nbsp;
+                            &middot;&nbsp;<a title='Download' href='${t.url}'>${t.size}</a>
+                        </li>`;
+                    });
+                }
 
-							// content_list += "<a target='_blank' href='" + json.data.movies[i].url + "'><img src='" + json.data.movies[i].large_cover_image + "' /></a><ul>";
+                // Append Card HTML
+                htmlBuffer += `
+                    <section>
+                        <h2><a title='Permalink' href='?movie=${movie.imdb_code}'>${title}</a></h2>
+                        <a target='_blank' href='${movie.url}'><img src='${img}' loading="lazy" /></a>
+                        <ul>
+                            <li>
+                                ${year}${lang}${runtime}
+                            </li>
+                            <li>
+                                <a target='_blank' href='${imdbLink}'>IMDb</a>:${rating}
+                                ${movie.yt_trailer_code ? `&nbsp;&middot;&nbsp;<a target='_blank' href='https://www.youtube.com/embed/${movie.yt_trailer_code}'>Trailer</a>` : ''}
+                            </li>
+                            ${torrentsHtml}
+                        </ul>
+                    </section>
+                `;
+            });
 
-							content_list += "<a target='_blank' title='Go to the movie&apos;s YIFY page' href='" + json.data.movies[i].url + "'><img src='" + json.data.movies[i].large_cover_image + "' /></a><ul>";
+            // IMPORTANT: Append to existing list, do not overwrite
+            document.getElementById("list").insertAdjacentHTML('beforeend', htmlBuffer);
+        }
 
-							content_list += "<li>" + json.data.movies[i].year;
+        // --- SCROLL HANDLER ---
+        
+        window.addEventListener('scroll', () => {
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            
+            // Trigger fetch when user is 300px from the bottom
+            if (scrollTop + clientHeight >= scrollHeight - 320) {
+                fetchMovies();
+            }
+        });
 
-							if (json.data.movies[i].language)
-								content_list += "&nbsp;&middot;&nbsp;<span class='up'>" + json.data.movies[i].language + "</span>";
-							
-							if (json.data.movies[i].runtime)
-								content_list += "&nbsp;&middot;&nbsp;" + json.data.movies[i].runtime + "&nbsp;min";
+        // --- INITIALIZATION ---
+        // Start the first load immediately
+        fetchMovies();
 
-							if (json.data.movies[i].rating)
-								content_list += "</li><li><a target='_blank' title='Go to the movie&apos;s IMDb page' href='https://www.imdb.com/title/" + json.data.movies[i].imdb_code + "'>IMDb</a>:&nbsp;" + json.data.movies[i].rating;
-							else
-								content_list += "</li><li><a target='_blank' title='Go to the movie&apos;s IMDb page' href='https://www.imdb.com/title/" + json.data.movies[i].imdb_code + "'>IMDb</a>";
-
-							if (json.data.movies[i].yt_trailer_code)
-								content_list += "&nbsp;&middot;&nbsp;<a target='_blank' title='Play the trailer' href='https://www.youtube.com/embed/" + json.data.movies[i].yt_trailer_code + "'>Trailer</a></li>";
-							else
-								content_list += "</li>"
-
-							for (let j = 0; j < json.data.movies[i].torrents.length; j++) {
-								content_list += "<li><span class='up'>" + json.data.movies[i].torrents[j].type + "</span>&nbsp;" + json.data.movies[i].torrents[j].quality + "&nbsp;" + json.data.movies[i].torrents[j].video_codec + "&nbsp;" + json.data.movies[i].torrents[j].audio_channels + "&nbsp;&middot;&nbsp;<a title='Download the torrent file' href='" + json.data.movies[i].torrents[j].url + "'>" + json.data.movies[i].torrents[j].size + "</a></li>";
-							}
-
-							content_list += "</ul></section>";
-						}
-
-						var content_foot = "<p>";
-
-// BUILD THE FOOTER FOR SEARCH
-						if (urlParams.has('movie'))
-							content_foot += json.data.movie_count + " Result(s) for &ldquo;" + urlParams.get('movie') + "&rdquo; at <a target='_blank' href='https://yts.lt/browse-movies'>YIFY Movies</a><br />Result(s) " + parseInt((json.data.limit*json.data.page_number)-(json.data.limit-1)) + " to " + parseInt((json.data.limit*(json.data.page_number-1))+json.data.movies.length);
-// BUILD THE FOOTER FOR LISTING
-						else
-							content_foot += "Movies " + parseInt((json.data.limit*json.data.page_number)-(json.data.limit-1)) + " to " + parseInt((json.data.limit*(json.data.page_number-1))+json.data.movies.length) + " released by <a target='_blank' href='https://yts.lt/browse-movies'>YIFY Movies</a>";
-
-						content_foot += "</p>";
-
-// BUILD THE PAGINATION
-						content_foot += "<p>";
-
-						if (json.data.page_number > 1) {
-							var page = json.data.page_number - 1;
-							if (urlParams.has('movie'))
-								content_foot += "<a class='arrow' href='" + window.location.pathname + "?movie=" + urlParams.get('movie') + "&page=" + page + "'>&larr;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-							else
-								content_foot += "<a class='arrow' href='" + window.location.pathname + "?page=" + page + "'>&larr;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						}
-						
-						if (json.data.movie_count > json.data.limit)
-							content_foot +=  json.data.page_number;
-
-						if (json.data.movie_count > json.data.limit && json.data.movies.length == json.data.limit) {
-							var page = json.data.page_number + 1;
-							if (urlParams.has('movie'))
-								content_foot += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class='arrow' href='" + window.location.pathname + "?movie=" + urlParams.get('movie') + "&page=" + page + "'>&rarr;</a>";
-							else
-								content_foot += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class='arrow' href='" + window.location.pathname + "?page=" + page + "'>&rarr;</a>";
-						}
-
-						content_foot += "</p>";
-					}
-
-// NO RESULTS
-					else {
-						var content_list = "<p>No Results</p>";
-
-						if (urlParams.has('movie'))
-							content_foot = "<p>No results for &ldquo;" + urlParams.get('movie') + "&rdquo; at <a target='_blank' href='https://yts.lt/browse-movies'>YIFY Movies</p>";
-						else
-							content_foot = "<p>No more movies released by <a target='_blank' href='https://yts.lt/browse-movies'>YIFY Movies</p>";
-					}
-
-// RENDER THE HTML CONTENT
-					document.getElementById("list").innerHTML = content_list;
-					document.getElementById("foot").innerHTML = content_foot + "<p class='disclaimer'>This website does not host any content. It is just a simple and lightweight frontend to the YIFY Movies <a target='_blank' href='https://yts.lt/api'>API</a> to avoid the adware of the <a target='_blank' href='https://yts.lt'>original site</a>.</p>";
-				})
-
-// MANAGE FETCH ERRORS
-				.catch((error) => {
-
-					var content_list = "<p><span class='error'>ERROR</span><br /><br />Couldn't fetch data from the API</p>";
-					document.getElementById("list").innerHTML = content_list;
-
-				})
-		</script>
-		<!-- 100% privacy-first analytics -->
-		<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-		<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
-	</body>
+    </script>
+    <!-- Privacy-first analytics -->
+    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+</body>
 </html>
