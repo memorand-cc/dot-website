@@ -119,7 +119,7 @@
                         // Update UI Footer Stats
                         const loadedCount = (currentPage - 1) * json.data.limit + json.data.movies.length;
                         document.getElementById("status-text").innerHTML = 
-                            `Showing ${loadedCount} of ${json.data.movie_count} results. Scroll for more.`;
+                            `Showing ${loadedCount} of ${json.data.movie_count} movies. Scroll for more.`;
 
                         // Prepare for next page
                         currentPage++;
@@ -127,15 +127,15 @@
                         // Check if we reached the end
                         if (loadedCount >= json.data.movie_count) {
                             hasMore = false;
-                            document.getElementById("status-text").innerHTML = "End of results.";
+                            document.getElementById("status-text").innerHTML = `${json.data.movie_count} movies found`;
                         }
                     } else {
                         // No results found at all or end of list
                         hasMore = false;
                         if(currentPage === 1) {
-                             document.getElementById("list").innerHTML = "<p>No Results Found.</p>";
+                             document.getElementById("list").innerHTML = "<p>No movies found</p>";
                         } else {
-                             document.getElementById("status-text").innerHTML = "No more movies to load.";
+                             document.getElementById("status-text").innerHTML = `${json.data.movie_count} movies`;
                         }
                     }
                 })
