@@ -79,7 +79,7 @@
 
     <footer id="foot">
         <p id="status-text"></p>
-        <p class="disclaimer">This website does not host any content. It is just a simple and lightweight frontend to the <a target='_blank' href='https://yts.lt/api'>YIFY Movies API</a>.</p>
+        <p class="disclaimer">This website does not host any content. It is just a simple and lightweight frontend to the <a target='_blank' href='https://yts.bz/api'>YIFY Movies API</a>.</p>
     </footer>
 
     <script type="text/javascript">
@@ -92,7 +92,7 @@
         
         // --- CONFIGURATION ---
         // Construct the Base URL without the page parameter
-        let baseUrl = "https://yts.lt/api/v2/list_movies.json?limit=50&sort_by=date_added";
+        let baseUrl = "https://yts.bz/api/v2/list_movies.json?limit=50&sort_by=date_added";
         if (searchTerm) {
             baseUrl += "&query_term=" + encodeURIComponent(searchTerm);
             // Set input value to current search
