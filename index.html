@@ -183,11 +183,7 @@
                         <a target='_blank' href='${movie.url}'><img src='${img}' loading="lazy" /></a>
                         <ul>
                             <li>
-                                ${year}${lang}${runtime}
-                            </li>
-                            <li>
-                                <a target='_blank' href='${imdbLink}'>IMDb</a>${rating}
-                                ${movie.yt_trailer_code ? `&middot;&nbsp;<a target='_blank' href='https://www.youtube.com/embed/${movie.yt_trailer_code}'>Trailer</a>` : ''}
+                                ${year}${lang}${runtime}&nbsp;&middot;&nbsp;<a target='_blank' href='${imdbLink}'>IMDb</a>${rating}
                             </li>
                             ${torrentsHtml}
                         </ul>
