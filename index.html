@@ -92,7 +92,7 @@
         
         // --- CONFIGURATION ---
         // Construct the Base URL without the page parameter
-        let baseUrl = "https://yts.bz/api/v2/list_movies.json?limit=50&sort_by=date_added";
+        let baseUrl = "https://movies-api.accel.li/api/v2/list_movies.json?limit=50&sort_by=date_added";
         if (searchTerm) {
             baseUrl += "&query_term=" + encodeURIComponent(searchTerm);
             // Set input value to current search
