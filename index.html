@@ -180,10 +180,10 @@
                 htmlBuffer += `
                     <section>
                         <h2><a title='Permalink' href='?movie=${movie.imdb_code}'>${title}</a></h2>
-                        <a target='_blank' href='${movie.url}'><img src='${img}' loading="lazy" /></a>
+                        <a target='_blank' href='${movie.url}' data-imdb='${movie.imdb_code}'><img src='${img}' loading="lazy" /></a>
                         <ul>
                             <li>
-                                ${year}${lang}${runtime}&nbsp;&middot;&nbsp;<a target='_blank' href='${imdbLink}'>IMDb</a>${rating}
+                                ${year}${lang}${runtime}&nbsp;&middot;&nbsp;<a target='_blank' href='${imdbLink}'>IMDb</a>${rating}&nbsp;&middot;&nbsp;<a target='_blank' href='${movie.url}'>YTS</a>
                             </li>
                             ${torrentsHtml}
                         </ul>
@@ -211,6 +211,7 @@
         fetchMovies();
 
     </script>
+    <script src="tmdb.js"></script>
     <!-- Privacy-first analytics -->
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
