@@ -180,10 +180,10 @@
                 htmlBuffer += `
                     <section>
                         <h2><a title='Permalink' href='?movie=${movie.imdb_code}'>${title}</a></h2>
-                        <a target='_blank' href='${movie.url}' data-imdb='${movie.imdb_code}'><img src='${img}' loading="lazy" /></a>
+                        <a target='_blank' href='${movie.url}'><img src='${img}' loading="lazy" /></a>
                         <ul>
                             <li>
-                                ${year}${lang}${runtime}&nbsp;&middot;&nbsp;<a target='_blank' href='${imdbLink}'>IMDb</a>${rating}&nbsp;&middot;&nbsp;<a target='_blank' href='${movie.url}'>YTS</a>
+                                ${year}${lang}${runtime}&nbsp;&middot;&nbsp;<a target='_blank' href='${imdbLink}'>IMDb</a>${rating}&nbsp;&middot;&nbsp;<a target='_blank' href='#' data-imdb='${movie.imdb_code}'>Stream</a>
                             </li>
                             ${torrentsHtml}
                         </ul>
