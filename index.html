@@ -79,7 +79,7 @@
 
     <footer id="foot">
         <p id="status-text"></p>
-        <p class="disclaimer">This website does not host any content. It is just a simple and lightweight frontend to the <a target='_blank' href='https://yts.gg/api'>YIFY Movies API</a>.</p>
+        <p class="disclaimer">This website does not host any content. It is just a simple and lightweight frontend to the <a target='_blank' href='https://yts.pw/api'>YIFY Movies API</a>.</p>
     </footer>
 
     <script type="text/javascript">
@@ -183,7 +183,7 @@
                         <a target='_blank' href='${movie.url}'><img src='${img}' loading="lazy" /></a>
                         <ul>
                             <li>
-                                ${year}${lang}${runtime}&nbsp;&middot;&nbsp;<a target='_blank' href='${imdbLink}'>IMDb</a>${rating}&nbsp;&middot;&nbsp;<a target='_blank' href='#' data-imdb='${movie.imdb_code}'>Stream</a>
+                                ${year}${lang}${runtime}&nbsp;&middot;&nbsp;<a target='_blank' href='${imdbLink}'>IMDb</a>${rating}
                             </li>
                             ${torrentsHtml}
                         </ul>
@@ -211,7 +211,6 @@
         fetchMovies();
 
     </script>
-    <script src="tmdb.js"></script>
     <!-- Privacy-first analytics -->
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
